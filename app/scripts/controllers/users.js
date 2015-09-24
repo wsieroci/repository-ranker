@@ -1,13 +1,14 @@
 define([
   'communicator',
   'views/usersView',
+  'views/navigationView',
   'models/user',
   'collections/orgRepositories',
   'collections/users',
   'backbone',
   'backbone.marionette'
 ],
-function( communicator, UsersView, User, OrgRepositories, UserCollection, Backbone ) {
+function( communicator, UsersView, NavigationView, User, OrgRepositories, UserCollection, Backbone ) {
   'use strict';
 
   function getUsers() {
@@ -23,13 +24,19 @@ function( communicator, UsersView, User, OrgRepositories, UserCollection, Backbo
 
   var UsersController = Backbone.Marionette.Controller.extend({
     initialize: function () {
+      this._showNavigation();
       getUsers().then(function (users) {
-        this._show(users);
+        this._showUsers(users);
       }.bind(this));
     },
-    _show: function (users) {
+    _showUsers: function (users) {
       var region = communicator.reqres.request('region:getRegion', 'content');
       var view = new UsersView({collection: users, region: region});
+      region.show(view);
+    },
+    _showNavigation: function (users) {
+      var region = communicator.reqres.request('region:getRegion', 'navigation');
+      var view = new NavigationView({region: region});
       region.show(view);
     }
   });

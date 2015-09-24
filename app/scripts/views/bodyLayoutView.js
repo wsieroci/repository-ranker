@@ -8,6 +8,7 @@ function( Backbone ) {
   var BodyLayoutView = Backbone.Marionette.LayoutView.extend({
     el: 'body',
     regions: {
+      navigation: '.js-navigation-container',
       content: '.js-main-container'
     },
     ui: {},
