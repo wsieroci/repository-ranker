@@ -23,24 +23,22 @@ module.exports = function (grunt) {
 
         // watch list
         watch: {
-          
           compass: {
-          files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-          tasks: ['compass']
-        },
-        
+            files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+            tasks: ['compass']
+          },
+
         livereload: {
           files: [
-          
-          '<%= yeoman.app %>/*.html',
-        '{.tmp,<%= yeoman.app %>}/styles/{,**/}*.css',
-      '{.tmp,<%= yeoman.app %>}/scripts/{,**/}*.js',
-    '{.tmp,<%= yeoman.app %>}/templates/{,**/}*.hbs',
-  '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
-  ],
-  options: {
-    livereload: true
-  }
+            '<%= yeoman.app %>/*.html',
+            '{.tmp,<%= yeoman.app %>}/styles/{,**/}*.css',
+            '{.tmp,<%= yeoman.app %>}/scripts/{,**/}*.js',
+            '{.tmp,<%= yeoman.app %>}/templates/{,**/}*.hbs',
+            '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
+          ],
+        options: {
+          livereload: true
+        }
 }
             /* not used at the moment
             handlebars: {
@@ -50,7 +48,7 @@ module.exports = function (grunt) {
                 tasks: ['handlebars']
               }*/
             },
-            
+
         // express app
         express: {
           options: {
@@ -63,7 +61,7 @@ module.exports = function (grunt) {
                 }
               }
             },
-            
+
             open: {
               server: {
                 path: 'http://localhost:<%= express.options.port %>'
@@ -87,7 +85,7 @@ module.exports = function (grunt) {
         ]
       },
 
-      
+
         // compass
         compass: {
           options: {
@@ -237,9 +235,9 @@ module.exports = function (grunt) {
         }
       });
 
-grunt.registerTask('createDefaultTemplate', function () {
-  grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
-});
+    grunt.registerTask('createDefaultTemplate', function () {
+      grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
+    });
 
     // starts express server with live testing via testserver
     grunt.registerTask('default', function (target) {
