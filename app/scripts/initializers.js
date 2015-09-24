@@ -1,15 +1,15 @@
 define([
-	'backbone',
-	'backbone.marionette'
+  'backbone',
+  'backbone.marionette'
 ],
 function( Backbone ) {
-    'use strict';
+  'use strict';
 
-	var Initializers = {
-		router: function () {
-		  
-		}
-	};
+  var Initializers = {
+    router: function () {
+      
+    }
+  };
 
-	return Initializers;
+  return Initializers;
 });

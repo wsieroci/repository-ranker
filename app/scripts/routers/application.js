@@ -1,17 +1,17 @@
 define([
-	'controllers/application',
-	'backbone',
-	'backbone.marionette'
+  'controllers/application',
+  'backbone',
+  'backbone.marionette'
 ],
 function( ApplicationController, Backbone ) {
-    'use strict';
+  'use strict';
 
-	var Router = Marionette.AppRouter.extend({
-	  controller: ApplicationController,
-	  appRoutes: {
-	    '': 'users'
-	  }
-	});
+  var Router = Marionette.AppRouter.extend({
+    controller: ApplicationController,
+    appRoutes: {
+      '': 'users'
+    }
+  });
 
-	return new Router();
+  return new Router();
 })
