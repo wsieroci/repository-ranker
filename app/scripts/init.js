@@ -17,11 +17,15 @@ require.config({
     bootstrap: {
       deps: ['jquery'],
       exports: 'jquery'
+    },
+    gh3: {
+      deps: ['underscore'],
+      exports: 'Gh3'
     }
   },
 
   paths: {
-    jquery: '../bower_components/jquery/jquery',
+    jquery: 'vendor/jquery/jquery',
     backbone: '../bower_components/backbone-amd/backbone',
     underscore: '../bower_components/underscore-amd/underscore',
 
@@ -30,6 +34,8 @@ require.config({
     'backbone.wreqr': '../bower_components/backbone.wreqr/lib/backbone.wreqr',
     'backbone.babysitter': '../bower_components/backbone.babysitter/lib/backbone.babysitter',
     'backbone-associations': '../bower_components/backbone-associations/backbone-associations',
+
+    gh3: '../bower_components/gh3/gh3',
 
     /* alias the bootstrap js lib */
     bootstrap: 'vendor/bootstrap',

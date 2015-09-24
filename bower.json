@@ -11,6 +11,7 @@
     "modernizr": "~2.6.2",
     "backbone.marionette": "~2.4.3",
     "backbone-associations": "~0.6.0",
+    "gh3": "~1.0.0",
     "require-handlebars-plugin": "~0.4.0",
     "mocha": "~1.12.0",
     "chai": "~1.7.2",
