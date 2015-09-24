@@ -8,7 +8,7 @@ function( Backbone, Associations ) {
 
   var UserModel = Associations.AssociatedModel.extend({
     defaults: {
-      name: ''
+      total: 0
     }
   });
 

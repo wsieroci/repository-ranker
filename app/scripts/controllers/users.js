@@ -2,12 +2,15 @@ define([
   'communicator',
   'views/usersView',
   'models/user',
+  'collections/orgRepositories',
   'collections/users',
   'backbone',
   'backbone.marionette'
 ],
-function( communicator, UsersView, User, UserCollection, Backbone ) {
+function( communicator, UsersView, User, OrgRepositories, UserCollection, Backbone ) {
   'use strict';
+
+  var users = communicator.reqres.request("collection:getUsers");
 
   var UsersController = Backbone.Marionette.Controller.extend({
     initialize: function () {
