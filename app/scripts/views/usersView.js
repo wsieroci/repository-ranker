@@ -7,10 +7,14 @@ define([
 function( Handlebars, welcomeTemplate, Backbone ) {
   'use strict';
 
-  var UsersView = Backbone.Marionette.ItemView.extend({
+  var UserRowView = Backbone.Marionette.ItemView.extend({
+    className: 'item',
+    template: welcomeTemplate
+  });
+
+  var UsersView = Backbone.Marionette.CollectionView.extend({
     className: 'content',
-    template: welcomeTemplate,
-    model: new Backbone.Model({success: "Steve"})
+    childView: UserRowView
   });
 
   return UsersView;

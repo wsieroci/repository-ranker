@@ -9,6 +9,10 @@ function( Backbone, Associations ) {
   var UserModel = Associations.AssociatedModel.extend({
     defaults: {
       total: 0
+    },
+    parse: function (response) {
+      this.set('id', response.author.login)
+      return response;
     }
   });
 
