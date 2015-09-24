@@ -29,6 +29,7 @@ require.config({
     'backbone.marionette': '../bower_components/backbone.marionette/lib/core/backbone.marionette',
     'backbone.wreqr': '../bower_components/backbone.wreqr/lib/backbone.wreqr',
     'backbone.babysitter': '../bower_components/backbone.babysitter/lib/backbone.babysitter',
+    'backbone-associations': '../bower_components/backbone-associations/backbone-associations',
 
     /* alias the bootstrap js lib */
     bootstrap: 'vendor/bootstrap',

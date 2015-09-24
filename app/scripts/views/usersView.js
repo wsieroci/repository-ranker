@@ -14,4 +14,4 @@ function( Handlebars, welcomeTemplate, Backbone ) {
   });
 
   return UsersView;
-})
+});

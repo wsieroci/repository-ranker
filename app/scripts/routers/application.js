@@ -14,4 +14,4 @@ function( applicationController, Backbone ) {
   });
 
   return new Router();
-})
+});

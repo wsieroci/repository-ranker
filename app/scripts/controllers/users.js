@@ -1,10 +1,12 @@
 define([
   'communicator',
   'views/usersView',
+  'models/user',
+  'collections/users',
   'backbone',
   'backbone.marionette'
 ],
-function( communicator, UsersView, Backbone ) {
+function( communicator, UsersView, User, UserCollection, Backbone ) {
   'use strict';
 
   var UsersController = Backbone.Marionette.Controller.extend({

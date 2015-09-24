@@ -16,4 +16,4 @@ function( Backbone ) {
   });
 
   return new BodyLayoutView();
-})
+});
