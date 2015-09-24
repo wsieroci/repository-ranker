@@ -1,29 +1,19 @@
 define([
   'backbone',
-  'communicator',
   'initializers',
-  'routers/application',
-  'hbs!tmpl/welcome'
+  'views/bodyLayoutView',
+  'routers/application'
 ],
-function( Backbone, Communicator, Initializers, Router, Welcome_tmpl ) {
+function( Backbone, initializers, bodyLayoutView, router ) {
   'use strict';
 
-  var welcomeTmpl = Welcome_tmpl;
+  var app = new Backbone.Marionette.Application();
 
-  var App = new Backbone.Marionette.Application();
+  app.rootView = bodyLayoutView;
 
-  /* Add application regions here */
-  App.addRegions({});
+  app.addInitializer(initializers.regions);
 
-  /* Add initializers here */
-  App.addInitializer( function () {
-    document.body.innerHTML = welcomeTmpl({ success: "CONGRATS!" });
-    Communicator.mediator.trigger("APP:START");
-  });
-
-  App.addInitializer(Initializers.router);
-
-  App.on("start", function () {
+  app.on("start", function () {
     if (Backbone.history) {
       Backbone.history.start({
         pushState: false
@@ -31,5 +21,5 @@ function( Backbone, Communicator, Initializers, Router, Welcome_tmpl ) {
     }
   });
 
-  return App;
+  return app;
 });

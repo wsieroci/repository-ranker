@@ -1,14 +1,16 @@
 define([
-	'backbone',
-	'backbone.marionette'
+  'communicator',
+  'backbone',
+  'backbone.marionette'
 ],
-function( Backbone ) {
-    'use strict';
+function( communicator, Backbone ) {
+  'use strict';
 
-	var ApplicationController = Backbone.Marionette.Controller.extend({
-	  users: function () {
-	  }
-	});
+  var ApplicationController = Backbone.Marionette.Controller.extend({
+    users: function () {
+      communicator.command.execute('route:users');
+    }
+  });
 
-	return new ApplicationController();
+  return new ApplicationController();
 });

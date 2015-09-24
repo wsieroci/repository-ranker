@@ -1,15 +1,21 @@
 define([
+  'communicator',
   'backbone',
-  'backbone.marionette'
+  'backbone.marionette',
+  'controllers/users'
 ],
-function( Backbone ) {
+function( communicator, Backbone ) {
   'use strict';
 
-  var Initializers = {
-    router: function () {
-      
+  var initializers = {
+    regions: function (options) {
+      var app = options.app;
+
+      communicator.reqres.setHandler("region:getRegion", function (region) {
+        return app.rootView[region];
+      });
     }
   };
 
-  return Initializers;
+  return initializers;
 });
