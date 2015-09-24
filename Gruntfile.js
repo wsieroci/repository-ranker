@@ -30,18 +30,25 @@ module.exports = function (grunt) {
             },
             
             livereload: {
-                files: [ 
+                files: [
+                    
                     '<%= yeoman.app %>/*.html',
                     '{.tmp,<%= yeoman.app %>}/styles/{,**/}*.css',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,**/}*.js',
                     '{.tmp,<%= yeoman.app %>}/templates/{,**/}*.hbs',
-                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
                 ],
-                tasks: ['exec'],
                 options: {
                     livereload: true
                 }
             }
+            /* not used at the moment
+            handlebars: {
+                files: [
+                    '<%= yeoman.app %>/templates/*.hbs'
+                ],
+                tasks: ['handlebars']
+            }*/
         },
         
         // express app
@@ -57,8 +64,6 @@ module.exports = function (grunt) {
             }
         },
         
-
-        // open app
         open: {
             server: {
                 path: 'http://localhost:<%= express.options.port %>'
@@ -78,10 +83,10 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= yeoman.app %>/scripts/{,*/}*.js',
-                '!<%= yeoman.app %>/scripts/vendor/*'
+                '<%= yeoman.app %>/scripts/{,*/}*.js'
             ]
         },
+
         
         // compass
         compass: {
@@ -236,6 +241,7 @@ module.exports = function (grunt) {
         grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
     });
 
+    // starts express server with live testing via testserver
     grunt.registerTask('default', function (target) {
 
         // what is this??
