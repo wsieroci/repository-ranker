@@ -21,7 +21,7 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
   });
 
   function getUsersList() {
-    var repositories = communicator.reqres.request('collection:getOrgRepositories');
+    var repositories = communicator.reqres.request('collection:getOrganizationRepositories');
     var usersList = [];
     var deferred = $.Deferred();
     var numRequests = 0;
@@ -44,6 +44,21 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
     return deferred.promise();
   }
 
+  function createUserCollection(repositoriesCollection, userCollection) {
+    $.each(repositoriesCollection, function (index, repository) {
+      repository.each(function (user) {
+        userCollection.add(user);
+        var tmpModel = userCollection.get(user.get('id'));
+
+        if(tmpModel) {
+          tmpModel.set('total', tmpModel.get('total') + user.get('total'));
+        } else {
+          userCollection.add(user);
+        }
+      });
+    });
+  }
+
   var userCollection;
 
   communicator.reqres.setHandler("collection:getUsers", function () {
@@ -55,19 +70,7 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
       getUsersList().then(function (usersList) {
         $.when.apply(this, usersList).done(function () {
           var repositoriesCollection = Array.prototype.slice.call(arguments);
-          $.each(repositoriesCollection, function (index, repository) {
-            repository.each(function (user) {
-              userCollection.add(user);
-              var tmpModel = userCollection.get(user.get('id'));
-
-              if(tmpModel) {
-                tmpModel.set('total', tmpModel.get('total') + user.get('total'));
-              } else {
-                userCollection.add(user);
-              }
-            });
-          });
-
+          createUserCollection(repositoriesCollection, userCollection);
           deferred.resolve(userCollection);
         });
       });

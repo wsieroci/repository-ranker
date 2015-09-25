@@ -3,10 +3,10 @@ define([
   'controllers/base',
   'views/users',
   'models/user',
-  'collections/orgRepositories',
+  'collections/organizationRepositories',
   'collections/users'
 ],
-function( communicator, BaseController, UsersView, User, OrgRepositories, UserCollection ) {
+function( communicator, BaseController, UsersView, User, OrganizationRepositories, UserCollection ) {
   'use strict';
 
   function getUsers() {
