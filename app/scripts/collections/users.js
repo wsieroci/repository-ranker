@@ -20,9 +20,9 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
     }
   });
 
-  function getUserRepositories() {
+  function getUsersList() {
     var repositories = communicator.reqres.request('collection:getOrgRepositories');
-    var userRepositories = [];
+    var usersList = [];
     var deferred = $.Deferred();
     var numRequests = 0;
 
@@ -31,14 +31,14 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
         if(numRequests > MAX_REQUESTS_LIMIT - 1) {
           return false; 
         }
-        userRepositories.push(repository.fetchUsers().then(function () {
+        usersList.push(repository.fetchUsers().then(function () {
           return repository.get('users');
         }));
 
         numRequests++;
       });
 
-      deferred.resolve(userRepositories);
+      deferred.resolve(usersList);
     });
 
     return deferred.promise();
@@ -52,8 +52,8 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
     if(!userCollection) {
       var userCollection = new UserCollection();
 
-      getUserRepositories().then(function (userRepositories) {
-        $.when.apply(this, userRepositories).done(function () {
+      getUsersList().then(function (usersList) {
+        $.when.apply(this, usersList).done(function () {
           var repositoriesCollection = Array.prototype.slice.call(arguments);
           $.each(repositoriesCollection, function (index, repository) {
             repository.each(function (user) {
