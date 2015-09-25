@@ -1,13 +1,12 @@
 define([
   'communicator',
-  'views/usersView',
+  'controllers/base',
+  'views/users',
   'models/user',
   'collections/orgRepositories',
-  'collections/users',
-  'backbone',
-  'backbone.marionette'
+  'collections/users'
 ],
-function( communicator, UsersView, User, OrgRepositories, UserCollection, Backbone ) {
+function( communicator, BaseController, UsersView, User, OrgRepositories, UserCollection ) {
   'use strict';
 
   function getUsers() {
@@ -21,8 +20,9 @@ function( communicator, UsersView, User, OrgRepositories, UserCollection, Backbo
     });
   }
 
-  var UsersController = Backbone.Marionette.Controller.extend({
+  var UsersController = BaseController.extend({
     initialize: function () {
+      this._showLoadingView();
       getUsers().then(function (users) {
         this._showUsers(users);
       }.bind(this));

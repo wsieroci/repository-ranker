@@ -1,12 +1,11 @@
 define([
   'communicator',
-  'backbone',
-  'backbone.marionette'
+  'controllers/base'
 ],
-function( communicator, Backbone ) {
+function( communicator, BaseController, Backbone ) {
   'use strict';
 
-  var ApplicationController = Backbone.Marionette.Controller.extend({
+  var ApplicationController = BaseController.extend({
     init: function () {
       this._showNavigation();
     },

@@ -2,7 +2,7 @@ define([
   'backbone',
   'initializers',
   'controllers/application',
-  'views/bodyLayoutView',
+  'views/bodyLayout',
   'routers/application'
 ],
 function( Backbone, initializers, applicationController, bodyLayoutView, router ) {
