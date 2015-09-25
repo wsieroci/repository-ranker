@@ -1,9 +1,11 @@
 define([
   'communicator',
+  'models/repository',
+  'jquery',
   'backbone',
   'backbone.marionette'
 ],
-function( communicator, Backbone ) {
+function( communicator, RepositoryModel, $, Backbone ) {
   'use strict';
 
   var OrgRepositoryCollection = Backbone.Collection.extend({
@@ -11,15 +13,23 @@ function( communicator, Backbone ) {
       this.url = 'https://api.github.com/orgs/angular/repos?client_id=7afd6b8573c9b0fadc21&client_secret=74e744a109e702226c7232aa6d1493c9fead4018';
     },
     model: function (attributes, options) {
-      return new Backbone.Model(attributes, options);
+      return new RepositoryModel(attributes, options);
     }
   });
 
+  var collection;
+
   communicator.reqres.setHandler("collection:getOrgRepositories", function () {
-    var collection = new OrgRepositoryCollection();
-    return collection.fetch().then(function () {
-      return collection;
-    });
+    if(!collection) {
+      collection = new OrgRepositoryCollection();
+      return collection.fetch().then(function () {
+        return collection;
+      });
+    } else {
+      var deferred = $.Deferred();
+      deferred.resolve(collection);
+      return deferred.promise();
+    }
   });
 
   return OrgRepositoryCollection;
