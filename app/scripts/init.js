@@ -38,7 +38,7 @@ require.config({
     gh3: '../bower_components/gh3/gh3',
 
     /* alias the bootstrap js lib */
-    bootstrap: 'vendor/bootstrap',
+    bootstrap: '../bower_components/sass-bootstrap/dist/js/bootstrap',
 
     /* Alias text.js for template loading and shortcut the templates dir to tmpl */
     text: '../bower_components/requirejs-text/text',

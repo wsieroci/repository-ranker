@@ -8,7 +8,7 @@ function( Handlebars, navigationTemplate, Backbone ) {
   'use strict';
 
   var NavigationView = Backbone.Marionette.ItemView.extend({
-    className: 'navigation',
+    className: 'container',
     template: navigationTemplate
   });
 
