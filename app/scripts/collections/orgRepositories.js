@@ -1,10 +1,9 @@
 define([
-  'models/user',
   'communicator',
   'backbone',
   'backbone.marionette'
 ],
-function( UserModel, communicator, Backbone ) {
+function( communicator, Backbone ) {
   'use strict';
 
   var OrgRepositoryCollection = Backbone.Collection.extend({

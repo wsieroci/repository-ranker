@@ -7,11 +7,13 @@ function( communicator, Backbone ) {
   'use strict';
 
   var ApplicationController = Backbone.Marionette.Controller.extend({
+    init: function () {
+      this._showNavigation();
+    },
     users: function () {
-      this.showNavigation();
       communicator.command.execute('route:users');
     },
-    showNavigation: function () {
+    _showNavigation: function () {
       communicator.reqres.request('controller:navigation');
     }
   });

@@ -1,10 +1,11 @@
 define([
   'backbone',
   'initializers',
+  'controllers/application',
   'views/bodyLayoutView',
   'routers/application'
 ],
-function( Backbone, initializers, bodyLayoutView, router ) {
+function( Backbone, initializers, applicationController, bodyLayoutView, router ) {
   'use strict';
 
   var app = new Backbone.Marionette.Application();
@@ -14,6 +15,7 @@ function( Backbone, initializers, bodyLayoutView, router ) {
   app.addInitializer(initializers.regions);
 
   app.on("start", function () {
+    applicationController.init();
     if (Backbone.history) {
       Backbone.history.start({
         pushState: false

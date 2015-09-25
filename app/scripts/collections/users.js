@@ -9,7 +9,7 @@ define([
 function( UserModel, Gh3, $, communicator, Backbone ) {
   'use strict';
 
-  var MAX_REQUESTS_NUMBER = 2;
+  var MAX_REQUESTS_LIMIT = 2;
 
   var UserRepositoryCollection = Backbone.Collection.extend({
     initialize: function (models, options) {
@@ -38,7 +38,7 @@ function( UserModel, Gh3, $, communicator, Backbone ) {
     repositories.then(function (repositories) { 
       repositories.each(function (model) {
         var userRepositoryCollection = new UserRepositoryCollection([], {repository: model});
-        if(numRequests > MAX_REQUESTS_NUMBER - 1) {
+        if(numRequests > MAX_REQUESTS_LIMIT - 1) {
           return false; 
         }
         userRepositories.push(userRepositoryCollection.fetch().then(function () {
