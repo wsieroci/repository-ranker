@@ -2,7 +2,8 @@ define([
   'communicator',
   'backbone',
   'backbone.marionette',
-  'controllers/users'
+  'controllers/users',
+  'controllers/navigation'
 ],
 function( communicator, Backbone ) {
   'use strict';
