@@ -1,12 +1,13 @@
 define([
   'backbone',
+  'underscore',
   'backbone-associations',
   'backbone.marionette'
 ],
-function( Backbone, Associations ) {
+function( Backbone, _, Associations ) {
   'use strict';
 
-  var USERS_API = 'https://api.github.com/users/';
+  var USERS_API = 'https://api.github.com/users/<%= login %>?client_id=7afd6b8573c9b0fadc21&client_secret=74e744a109e702226c7232aa6d1493c9fead4018';
 
   var UserModel = Associations.AssociatedModel.extend({
     defaults: {
@@ -20,7 +21,7 @@ function( Backbone, Associations ) {
     fetchAuthor: function () {
       if(this._isAuthorComplete === false) {
         var authorModel = new Backbone.Model();
-        authorModel.url = USERS_API + this.get('author').login;
+        authorModel.url = _.template(USERS_API)({login: this.get('author').login});
         this._isAuthorComplete = true
         return authorModel.fetch().then(function () {
           this.set('author', authorModel.attributes);
