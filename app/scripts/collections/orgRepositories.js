@@ -13,7 +13,8 @@ function( communicator, RepositoryModel, $, Backbone ) {
       this.url = 'https://api.github.com/orgs/angular/repos?client_id=7afd6b8573c9b0fadc21&client_secret=74e744a109e702226c7232aa6d1493c9fead4018';
     },
     model: function (attributes, options) {
-      return new RepositoryModel(attributes, options);
+      var repository = new RepositoryModel(attributes, options);
+      return repository;
     }
   });
 

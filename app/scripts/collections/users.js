@@ -1,27 +1,16 @@
 define([
   'models/user',
+  'models/repository',
   'gh3',
   'jquery',
   'communicator',
   'backbone',
   'backbone.marionette'
 ],
-function( UserModel, Gh3, $, communicator, Backbone ) {
+function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
   'use strict';
 
   var MAX_REQUESTS_LIMIT = 2;
-
-  var UsersRepositoryCollection = Backbone.Collection.extend({
-    initialize: function (models, options) {
-      var name = '';
-      this._repository = options.repository;
-      name = this._repository.get('full_name');
-      this.url = 'https://api.github.com/repos/' + name + '/stats/contributors?client_id=7afd6b8573c9b0fadc21&client_secret=74e744a109e702226c7232aa6d1493c9fead4018';
-    },
-    model: function (attributes, options) {
-      return new UserModel(attributes, options);
-    }
-  });
 
   var UserCollection = Backbone.Collection.extend({
     initialize: function (options) {
@@ -39,12 +28,11 @@ function( UserModel, Gh3, $, communicator, Backbone ) {
 
     repositories.then(function (repositories) { 
       repositories.each(function (repository) {
-        var usersRepositoryCollection = new UsersRepositoryCollection([], {repository: repository});
         if(numRequests > MAX_REQUESTS_LIMIT - 1) {
           return false; 
         }
-        userRepositories.push(usersRepositoryCollection.fetch().then(function () {
-          return usersRepositoryCollection;
+        userRepositories.push(repository.fetchUsers().then(function () {
+          return repository.get('users');
         }));
 
         numRequests++;
@@ -90,5 +78,5 @@ function( UserModel, Gh3, $, communicator, Backbone ) {
     return deferred.promise();
   });
 
-  return UserRepositoryCollection;
+  return UserCollection;
 });
