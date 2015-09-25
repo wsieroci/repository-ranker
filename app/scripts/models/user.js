@@ -6,6 +6,8 @@ define([
 function( Backbone, Associations ) {
   'use strict';
 
+  var USERS_API = 'https://api.github.com/users/';
+
   var UserModel = Associations.AssociatedModel.extend({
     defaults: {
       total: 0,
@@ -18,7 +20,7 @@ function( Backbone, Associations ) {
     fetchAuthor: function () {
       if(this._isAuthorComplete === false) {
         var authorModel = new Backbone.Model();
-        authorModel.url = 'https://api.github.com/users/' + this.get('author').login;
+        authorModel.url = USERS_API + this.get('author').login;
         this._isAuthorComplete = true
         return authorModel.fetch().then(function () {
           this.set('author', authorModel.attributes);

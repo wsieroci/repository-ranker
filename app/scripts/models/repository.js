@@ -1,12 +1,15 @@
 define([
   'backbone',
+  'underscore',
   'models/user',
   'collections/users',
   'backbone-associations',
   'backbone.marionette'
 ],
-function( Backbone, UserModel, UserCollection, Associations ) {
+function( Backbone, _, UserModel, UserCollection, Associations ) {
   'use strict';
+
+  var CONTRIBUTORS_API = 'https://api.github.com/repos/<%= name %>/stats/contributors?client_id=7afd6b8573c9b0fadc21&client_secret=74e744a109e702226c7232aa6d1493c9fead4018';
 
   function addRepository(userCollection, repository) {
     userCollection.each(function (model) {
@@ -32,7 +35,7 @@ function( Backbone, UserModel, UserCollection, Associations ) {
       if(this._isUsersFetched === false) {
         var userCollection = new UserCollection();
         var name = this.get('full_name');
-        userCollection.url = 'https://api.github.com/repos/' + name + '/stats/contributors?client_id=7afd6b8573c9b0fadc21&client_secret=74e744a109e702226c7232aa6d1493c9fead4018';
+        userCollection.url = _.template(CONTRIBUTORS_API)({name: name});
         return userCollection.fetch().then(function () {
           this.set('users', userCollection);
           addRepository(userCollection, this);

@@ -24,7 +24,6 @@ function( communicator, BaseController, UsersView, User, OrgRepositories, UserCo
     initialize: function () {
       this._showLoadingView();
       getUsers().then(function (users) {
-        debugger
         this._showUsers(users);
       }.bind(this));
     },
