@@ -1,0 +1,39 @@
+<a href="#user/{{id}}">
+  <div class="avatar">
+    <img src="{{author.avatar_url}}}" class="img-circle" />
+  </div>
+  <div class="user-login-data">{{id}}</div>
+  <div class="user-score-data">
+    <div class="row-data">
+      <span class="score-data-label">Contributions:</span>
+      <span class="score-data-value">{{total}}</span>
+    </div>
+
+    <div class="row-data">
+      <span class="score-data-label">Followers:</span>
+      {{#if author.followers}}
+        <span class="score-data-value">{{author.followers}}</span>
+      {{else}}
+        <span class="score-data-value">-</span>
+      {{/if}}
+    </div>
+
+    <div class="row-data">
+      <span class="score-data-label">Public repos:</span>
+      {{#if author.public_repos}}
+        <span class="score-data-value">{{author.public_repos}}</span>
+      {{else}}
+        <span class="score-data-value">-</span>
+      {{/if}}
+    </div>
+
+    <div class="row-data">
+      <span class="score-data-label">Gists:</span>
+      {{#if author.public_gists}}
+        <span class="score-data-value">{{author.public_gists}}</span>
+      {{else}}
+        <span class="score-data-value">-</span>
+      {{/if}}
+    </div>
+  </div>
+</a>

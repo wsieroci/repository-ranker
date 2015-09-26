@@ -1,0 +1,73 @@
+@import 'palette.scss';
+@import 'compass';
+
+.container {
+  .repository-view {
+
+    h4 {
+      margin-top: 50px;
+      color: $warmerSilver;
+    }
+
+    ul.user-items {
+      padding-left: 0px;
+      li.user-item {
+        list-style-type: none;
+        min-height: 150px;
+        position: relative;
+
+        @include transition(background-color, 0.1s, ease);
+
+        &:nth-of-type(2n) {
+          background-color: $nearLight;
+        }
+
+        &:hover {
+          background-color: $nearLightDarker;
+        }
+
+        a {
+          padding: 15px 15px;
+          display: block; 
+          min-height: inherit;
+
+          div {
+            color: $black;
+          }
+
+          &:hover {
+            div {
+              color: $black;
+            }
+          }
+
+          img {
+            width: 100px;
+            float: left;
+            margin-top: 8px;
+            @include box-shadow(2px 1px 1px rgba(0, 0, 0, 0.7));
+          }
+
+          .user-login-data {
+            position: absolute;
+            top: 20px;
+            left: 140px;
+            font-size: 18px;
+          }
+
+          .user-score-data {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            .row-data {
+              text-align: right;
+              .score-data-label {
+                color: rgba($black, 0.7);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
