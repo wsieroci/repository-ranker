@@ -59,6 +59,27 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
     });
   }
 
+  function fetchAuthors(userCollection) {
+    var array = userCollection.toArray();
+    var numRequests = 0;
+    var promiseCollection = [];
+    var deferred = $.Deferred(); 
+
+    $.each(array, function (index, user) {
+      promiseCollection.push(user.fetchAuthor());
+      if(numRequests > MAX_REQUESTS_LIMIT - 1) {
+        return false; 
+      }
+      numRequests++;
+    });
+
+    $.when.apply(this, promiseCollection).done(function () {
+      deferred.resolve();
+    });
+
+    return deferred.promise();
+  }
+
   var userCollection;
 
   communicator.reqres.setHandler("collection:getUsers", function () {
@@ -71,7 +92,14 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
         $.when.apply(this, usersList).done(function () {
           var repositoriesCollection = Array.prototype.slice.call(arguments);
           createUserCollection(repositoriesCollection, userCollection);
-          deferred.resolve(userCollection);
+
+          userCollection.comparator =  function(user) {
+            return -user.get("total");
+          };
+          userCollection.sort();
+          fetchAuthors(userCollection).then(function () {
+            deferred.resolve(userCollection);
+          });
         });
       });
     } else {

@@ -12,10 +12,6 @@ function( communicator, BaseController, UsersView, User, OrganizationRepositorie
   function getUsers() {
     var users = communicator.reqres.request("collection:getUsers");
     return users.then(function (userCollection) {
-      userCollection.comparator =  function(user) {
-        return -user.get("total");
-      };
-      userCollection.sort();
       return userCollection;
     });
   }
