@@ -12,9 +12,7 @@ function( communicator, BaseController, UserView, User, OrganizationRepositories
 
   function getUser(id) {
     var user = communicator.reqres.request("model:getUser", id);
-    return user.then(function (user) {
-      return user;
-    });
+    return user;
   }
 
   var UserController = BaseController.extend({

@@ -12,9 +12,7 @@ function( communicator, _, BaseController, UsersView, User, OrganizationReposito
 
   function getUsers() {
     var users = communicator.reqres.request("collection:getUsers");
-    return users.then(function (userCollection) {
-      return userCollection;
-    });
+    return users;
   }
 
   var currentUserList;
