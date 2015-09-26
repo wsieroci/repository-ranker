@@ -10,7 +10,8 @@ function( applicationController, Backbone ) {
     controller: applicationController,
     appRoutes: {
       '': 'users',
-      'user/:id': 'user'
+      'user/:id': 'user',
+      'repositories': 'repositories'
     }
   });
 

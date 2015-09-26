@@ -4,6 +4,7 @@ define([
   'backbone.marionette',
   'controllers/users',
   'controllers/user',
+  'controllers/repositories',
   'controllers/navigation',
   'comparators'
 ],

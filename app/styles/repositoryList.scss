@@ -1,0 +1,15 @@
+@import 'palette.scss';
+@import 'compass';
+
+ul.repository-list {
+  padding-left: 0px;
+  li {
+    list-style-type: none;
+    a {
+      color: $black;
+      &:hover {
+        color: $warmSilver;
+      }
+    }
+  }
+}
