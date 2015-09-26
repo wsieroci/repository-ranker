@@ -1,0 +1,25 @@
+@import 'palette.scss';
+@import 'compass';
+
+.container {
+  .user-view {
+
+    a {
+      color: $black;
+      &:hover {
+        color: $warmSilver;
+      }
+    }
+
+    .avatar {
+      img {
+        height: 300px;
+      }
+    }
+
+    .user-login-data {
+      font-size: 24px;
+      padding: 20px;
+    }
+  }
+}

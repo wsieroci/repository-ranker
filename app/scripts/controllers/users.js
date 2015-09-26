@@ -37,9 +37,9 @@ function( communicator, BaseController, UsersView, User, OrganizationRepositorie
     return new UsersController();
   });
 
-  communicator.command.setHandler('controller:users:sort', function (direction) {
+  communicator.command.setHandler('controller:users:sort', function (type) {
     if(currentUserList) {
-      currentUserList.comparator = communicator.reqres.request('comparator:get', direction);
+      currentUserList.comparator = communicator.reqres.request('comparator:get', type);
       currentUserList.sort();
     }
   });

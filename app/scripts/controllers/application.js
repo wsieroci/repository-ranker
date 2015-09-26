@@ -13,7 +13,7 @@ function( communicator, BaseController, Backbone ) {
       communicator.command.execute('route:users');
     },
     user: function (id) {
-      communicator.command.execute('route:user', parseInt(id, 10));
+      communicator.command.execute('route:user', id);
     },
     _showNavigation: function () {
       communicator.reqres.request('controller:navigation');

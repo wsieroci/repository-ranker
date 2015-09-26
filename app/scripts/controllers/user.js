@@ -1,16 +1,17 @@
 define([
   'communicator',
   'controllers/base',
-  'views/users',
+  'views/user',
   'models/user',
   'collections/organizationRepositories',
-  'collections/users'
+  'collections/users',
+  'backbone'
 ],
-function( communicator, BaseController, UsersView, User, OrganizationRepositories, UserCollection ) {
+function( communicator, BaseController, UserView, User, OrganizationRepositories, UserCollection, Backbone ) {
   'use strict';
 
-  function getUser() {
-    var user = communicator.reqres.request("collection:getUser");
+  function getUser(id) {
+    var user = communicator.reqres.request("model:getUser", id);
     return user.then(function (user) {
       return user;
     });
@@ -26,7 +27,7 @@ function( communicator, BaseController, UsersView, User, OrganizationRepositorie
     },
     _showUser: function (user) {
       var region = communicator.reqres.request('region:getRegion', 'content');
-      var view = new UserView({model: user, region: region});
+      var view = new UserView({model: user, collection: new Backbone.Collection(), region: region});
       region.show(view);
     }
   });
