@@ -1,19 +1,21 @@
 define([
   'handlebars',
-  'hbs!tmpl/welcome',
+  'hbs!tmpl/userRow',
   'backbone',
   'backbone.marionette'
 ],
-function( Handlebars, welcomeTemplate, Backbone ) {
+function( Handlebars, userRowTemplate, Backbone ) {
   'use strict';
 
   var UserRowView = Backbone.Marionette.ItemView.extend({
-    className: 'item',
-    template: welcomeTemplate
+    className: 'user-item',
+    tagName: 'li',
+    template: userRowTemplate
   });
 
   var UsersView = Backbone.Marionette.CollectionView.extend({
-    className: 'content',
+    className: 'user-list',
+    tagName: 'ul',
     childView: UserRowView
   });
 

@@ -1,0 +1,14 @@
+@import 'palette.scss';
+
+.container {
+  ul.user-list {
+    padding-left: 0px;
+    li {
+      padding: 15px;
+      list-style-type: none;
+      &:nth-of-type(2n) {
+        background-color: $nearLight;
+      }
+    }
+  }
+}

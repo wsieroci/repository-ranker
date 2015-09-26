@@ -4,9 +4,10 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 16px;
   font-weight: 400;
+  overflow-y:scroll;
+  >.container {
+    padding-top: 80px;
+    text-align: center;
+  }
 }
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 400px;
-}
