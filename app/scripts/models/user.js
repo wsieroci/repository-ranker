@@ -12,8 +12,7 @@ function( communicator, Backbone, _, Associations ) {
 
   var UserModel = Associations.AssociatedModel.extend({
     defaults: {
-      total: 0,
-      repositories: {}
+      total: 0
     },
     initialize: function (model, options) {
       this.set('id', model.author.login);
@@ -35,8 +34,11 @@ function( communicator, Backbone, _, Associations ) {
       }
     },
     addRepository: function(repository) {
-      var fullName = repository.get('full_name');
-      this.get('repositories')[fullName] = repository;
+      if(_.isUndefined(this.get('repositories'))) {
+        this.set('repositories', new Backbone.Collection());
+      }
+      // var fullName = repository.get('full_name');
+      this.get('repositories').add(repository);
     }
   });
 

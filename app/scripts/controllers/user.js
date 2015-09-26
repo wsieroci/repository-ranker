@@ -27,7 +27,7 @@ function( communicator, BaseController, UserView, User, OrganizationRepositories
     },
     _showUser: function (user) {
       var region = communicator.reqres.request('region:getRegion', 'content');
-      var view = new UserView({model: user, collection: new Backbone.Collection(), region: region});
+      var view = new UserView({model: user, collection: user.get('repositories'), region: region});
       region.show(view);
     }
   });

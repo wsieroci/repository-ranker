@@ -1,11 +1,18 @@
 define([
   'handlebars',
   'hbs!tmpl/user',
+  'hbs!tmpl/repositoryRow',
   'backbone',
   'backbone.marionette'
 ],
-function( Handlebars, userTemplate, Backbone ) {
+function( Handlebars, userTemplate, repositoryRowTemplate, Backbone ) {
   'use strict';
+
+  var RepositoryRowView = Backbone.Marionette.ItemView.extend({
+    className: 'repository-item',
+    tagName: 'li',
+    template: repositoryRowTemplate
+  });
 
   var UserView = Backbone.Marionette.CompositeView.extend({
     className: 'user-view',
@@ -15,7 +22,7 @@ function( Handlebars, userTemplate, Backbone ) {
         items: this.collection.toJSON() 
       };
     },
-    childView: Backbone.Marionette.ItemView,
+    childView: RepositoryRowView,
     childViewContainer: '.repository-items'
   });
 

@@ -21,5 +21,17 @@
       font-size: 24px;
       padding: 20px;
     }
+    
+    .repositories-info {
+      h2 {
+        font-size: 16px;
+      }
+      ul {
+        padding-left: 0px;
+        li {
+          list-style-type: none;
+        }
+      }
+    }
   }
 }
