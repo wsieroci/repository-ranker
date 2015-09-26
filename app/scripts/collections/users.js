@@ -93,11 +93,10 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
           var repositoriesCollection = Array.prototype.slice.call(arguments);
           createUserCollection(repositoriesCollection, userCollection);
 
-          userCollection.comparator =  function(user) {
-            return -user.get("total");
-          };
-          userCollection.sort();
           fetchAuthors(userCollection).then(function () {
+            userCollection.comparator = communicator.reqres.request('comparator:get', 'contributions');
+            userCollection.sort();
+
             deferred.resolve(userCollection);
           });
         });

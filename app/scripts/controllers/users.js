@@ -16,10 +16,13 @@ function( communicator, BaseController, UsersView, User, OrganizationRepositorie
     });
   }
 
+  var currentUserList;
+
   var UsersController = BaseController.extend({
     initialize: function () {
       this._showLoadingView();
       getUsers().then(function (users) {
+        currentUserList = users;
         this._showUsers(users);
       }.bind(this));
     },
@@ -32,5 +35,12 @@ function( communicator, BaseController, UsersView, User, OrganizationRepositorie
 
   communicator.command.setHandler('route:users', function () {
     return new UsersController();
+  });
+
+  communicator.command.setHandler('controller:users:sort', function (direction) {
+    if(currentUserList) {
+      currentUserList.comparator = communicator.reqres.request('comparator:get', direction);
+      currentUserList.sort();
+    }
   });
 });

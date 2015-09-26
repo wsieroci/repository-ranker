@@ -9,7 +9,8 @@ function( applicationController, Backbone ) {
   var Router = Marionette.AppRouter.extend({
     controller: applicationController,
     appRoutes: {
-      '': 'users'
+      '': 'users',
+      'user/:id': 'user'
     }
   });
 
