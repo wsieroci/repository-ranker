@@ -1,13 +1,39 @@
 @import 'palette.scss';
+@import 'compass';
 
 .container {
   ul.user-list {
     padding-left: 0px;
-    li {
-      padding: 15px;
+    li.user-item {
+      padding: 15px 15px;
       list-style-type: none;
+      min-height: 150px;
+      position: relative;
+
       &:nth-of-type(2n) {
         background-color: $nearLight;
+      }
+
+      img {
+        width: 80px;
+        float: left;
+        @include opacity(0.85);
+        @include box-shadow(2px 1px 1px rgba(0, 0, 0, 0.7));
+      }
+
+      .user-login-data {
+        position: absolute;
+        top: 20px;
+        left: 120px;
+      }
+
+      .user-score-data {
+        position: absolute;
+        top: 20px;
+        right: 50px;
+        .score-data-label {
+          color: rgba($black, 0.7);
+        }
       }
     }
   }

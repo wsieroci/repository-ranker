@@ -1,8 +1,10 @@
 <div class="">
   <div class="avatar">
-    <img src="{{author.avatar_url}}}" />
+    <img src="{{author.avatar_url}}}" class="img-circle" />
   </div>
-  <h1>{{total}}</h1>
-  <h2>{{id}}</h2>
-  <p>You now have</p>
+  <div class="user-login-data">{{id}}</div>
+  <div class="user-score-data">
+    <span class="score-data-label">Contributions:</span>
+    <span class="score-data-value">{{total}}</span>
+  </div>
 </div>
