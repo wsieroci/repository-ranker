@@ -28,26 +28,19 @@ module.exports = function (grunt) {
             tasks: ['compass']
           },
 
-        livereload: {
-          files: [
-            '<%= yeoman.app %>/*.html',
-            '{.tmp,<%= yeoman.app %>}/styles/{,**/}*.css',
-            '{.tmp,<%= yeoman.app %>}/scripts/{,**/}*.js',
-            '{.tmp,<%= yeoman.app %>}/templates/{,**/}*.hbs',
-            '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
-          ],
-        options: {
-          livereload: true
-        }
-}
-            /* not used at the moment
-            handlebars: {
-                files: [
-                    '<%= yeoman.app %>/templates/*.hbs'
-                ],
-                tasks: ['handlebars']
-              }*/
-            },
+          livereload: {
+            files: [
+              '<%= yeoman.app %>/*.html',
+              '{.tmp,<%= yeoman.app %>}/styles/{,**/}*.css',
+              '{.tmp,<%= yeoman.app %>}/scripts/{,**/}*.js',
+              '{.tmp,<%= yeoman.app %>}/templates/{,**/}*.hbs',
+              '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
+            ],
+            options: {
+              livereload: true
+            }
+          }
+        },
 
         // express app
         express: {
@@ -81,7 +74,7 @@ module.exports = function (grunt) {
           },
           all: [
           'Gruntfile.js',
-        '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/{,*/}*.js'
         ]
       },
 
@@ -104,7 +97,7 @@ module.exports = function (grunt) {
             }
           }
         },
-        
+
 
         // require
         requirejs: {
@@ -179,15 +172,6 @@ module.exports = function (grunt) {
       htmlmin: {
         dist: {
           options: {
-                    /*removeCommentsFromCDATA: true,
-                    // https://github.com/yeoman/grunt-usemin/issues/44
-                    //collapseWhitespace: true,
-                    collapseBooleanAttributes: true,
-                    removeAttributeQuotes: true,
-                    removeRedundantAttributes: true,
-                    useShortDoctype: true,
-                    removeEmptyAttributes: true,
-                    removeOptionalTags: true*/
                   },
                   files: [{
                     expand: true,
@@ -241,19 +225,12 @@ module.exports = function (grunt) {
 
     // starts express server with live testing via testserver
     grunt.registerTask('default', function (target) {
-
-        // what is this??
-        if (target === 'dist') {
-          return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
-        }
-
         grunt.option('force', true);
 
         grunt.task.run([
           'clean:server',
           'compass:server',
           'express:dev',
-          'open',
           'watch'
           ]);
       });

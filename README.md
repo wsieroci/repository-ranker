@@ -8,3 +8,4 @@ Installation
 - gem install compass
 - bower install
 - grunt
+- Go to application by http://localhost:9000
