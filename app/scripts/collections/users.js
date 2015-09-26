@@ -86,7 +86,7 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
     var deferred = $.Deferred();
 
     if(!userCollection) {
-      var userCollection = new UserCollection();
+      userCollection = new UserCollection();
 
       getUsersList().then(function (usersList) {
         $.when.apply(this, usersList).done(function () {

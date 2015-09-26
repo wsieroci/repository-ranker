@@ -38,6 +38,7 @@ function( communicator, BaseController, UsersView, User, OrganizationRepositorie
   });
 
   communicator.command.setHandler('controller:users:sort', function (type) {
+    debugger
     if(currentUserList) {
       currentUserList.comparator = communicator.reqres.request('comparator:get', type);
       currentUserList.sort();
