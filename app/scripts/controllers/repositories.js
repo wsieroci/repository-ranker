@@ -26,6 +26,7 @@ function( communicator, BaseController, RepositoriesView ) {
   });
 
   communicator.command.setHandler('route:repositories', function () {
+    communicator.command.execute('controller:navigation:hideSorting');
     return new RepositoriesController();
   });
 });

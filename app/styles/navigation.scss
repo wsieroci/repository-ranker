@@ -30,6 +30,13 @@ nav {
 }
 
 .navbar-default {
+
+  .hide-sorting {
+    .dropdown {
+      display: none
+    }
+  }
+
   .navbar-nav {
     >li {
       >a {

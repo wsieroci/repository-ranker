@@ -28,6 +28,7 @@ function( communicator, BaseController, RepositoryView, Backbone ) {
   });
 
   communicator.command.setHandler('route:repository', function (id) {
+    communicator.command.execute('controller:navigation:hideSorting');
     return new RepositoryController({id: id});
   });
 });

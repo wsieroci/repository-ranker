@@ -4,6 +4,13 @@
 .container {
   .repository-view {
 
+    a {
+      color: $black;
+      &:hover {
+        color: $warmSilver;
+      }
+    }
+
     h4 {
       margin-top: 50px;
       color: $warmerSilver;

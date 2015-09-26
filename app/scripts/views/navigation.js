@@ -21,6 +21,12 @@ function( communicator, Handlebars, navigationTemplate, Backbone ) {
       event && event.preventDefault();
       var sortType = $(event.currentTarget).attr('data-sort');
       communicator.command.execute('controller:users:sort', sortType);
+    },
+    hideSorting: function () {
+      this.$el.addClass('hide-sorting');
+    },
+    showSorting: function () {
+      this.$el.removeClass('hide-sorting');
     }
   });
 

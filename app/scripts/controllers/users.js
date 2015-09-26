@@ -34,6 +34,7 @@ function( communicator, BaseController, UsersView, User, OrganizationRepositorie
   });
 
   communicator.command.setHandler('route:users', function () {
+    communicator.command.execute('controller:navigation:showSorting');
     return new UsersController();
   });
 

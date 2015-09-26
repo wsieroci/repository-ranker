@@ -12,8 +12,14 @@ function( communicator, BaseController, NavigationView ) {
     },
     _showNavigation: function () {
       var region = communicator.reqres.request('region:getRegion', 'navigation');
-      var view = new NavigationView({region: region});
-      region.show(view);
+      this._view = new NavigationView({region: region});
+      region.show(this._view);
+    },
+    hideSorting: function () {
+      this._view.hideSorting();
+    },
+    showSorting: function () {
+      this._view.showSorting();
     }
   });
 
@@ -25,6 +31,18 @@ function( communicator, BaseController, NavigationView ) {
     }
     
     return navigation;
+  });
+
+  communicator.command.setHandler('controller:navigation:hideSorting', function () {
+    if(navigation) {
+      navigation.hideSorting();
+    }
+  });
+
+  communicator.command.setHandler('controller:navigation:showSorting', function () {
+    if(navigation) {
+      navigation.showSorting();
+    }
   });
 
   return NavigationController;

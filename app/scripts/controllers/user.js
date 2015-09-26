@@ -33,6 +33,7 @@ function( communicator, BaseController, UserView, User, OrganizationRepositories
   });
 
   communicator.command.setHandler('route:user', function (id) {
+    communicator.command.execute('controller:navigation:hideSorting');
     return new UserController({id: id});
   });
 });
