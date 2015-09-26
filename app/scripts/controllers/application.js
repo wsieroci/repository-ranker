@@ -18,6 +18,9 @@ function( communicator, BaseController, Backbone ) {
     repositories: function () {
       communicator.command.execute('route:repositories');
     },
+    repository: function (id) {
+      communicator.command.execute('route:repository', id);
+    },
     _showNavigation: function () {
       communicator.reqres.request('controller:navigation');
     }

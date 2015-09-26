@@ -37,7 +37,6 @@ function( communicator, Backbone, _, Associations ) {
       if(_.isUndefined(this.get('repositories'))) {
         this.set('repositories', new Backbone.Collection());
       }
-      // var fullName = repository.get('full_name');
       this.get('repositories').add(repository);
     }
   });

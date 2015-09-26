@@ -11,7 +11,8 @@ function( applicationController, Backbone ) {
     appRoutes: {
       '': 'users',
       'user/:id': 'user',
-      'repositories': 'repositories'
+      'repositories': 'repositories',
+      'repository/:id': 'repository'
     }
   });
 

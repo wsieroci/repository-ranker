@@ -1,12 +1,13 @@
 define([
   'backbone',
+  'communicator',
   'underscore',
   'models/user',
   'collections/users',
   'backbone-associations',
   'backbone.marionette'
 ],
-function( Backbone, _, UserModel, UserCollection, Associations ) {
+function( Backbone, communicator, _, UserModel, UserCollection, Associations ) {
   'use strict';
 
   var CONTRIBUTORS_API = 'https://api.github.com/repos/<%= name %>/stats/contributors?client_id=7afd6b8573c9b0fadc21&client_secret=74e744a109e702226c7232aa6d1493c9fead4018';
@@ -47,6 +48,16 @@ function( Backbone, _, UserModel, UserCollection, Associations ) {
         return deferred.promise();
       }
     }
+  });
+
+  communicator.reqres.setHandler('model:getRepository', function (id) {
+    var users = communicator.reqres.request('collection:getUsers');
+    return users.then(function () {
+      var repositories = communicator.reqres.request('collection:getOrganizationRepositories');
+      return repositories.then(function (repositories) {
+        return repositories.get(id);
+      })
+    });
   });
 
   return RepositoryModel;

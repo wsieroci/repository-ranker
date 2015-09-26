@@ -5,6 +5,7 @@ define([
   'controllers/users',
   'controllers/user',
   'controllers/repositories',
+  'controllers/repository',
   'controllers/navigation',
   'comparators'
 ],
