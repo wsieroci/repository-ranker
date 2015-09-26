@@ -21,10 +21,12 @@ function( communicator, _, BaseController, UsersView, User, OrganizationReposito
   var UsersController = BaseController.extend({
     initialize: function () {
       this._showLoadingView();
-      getUsers().then(function (users) {
-        currentUserList = users;
-        this.showUsers(users);
-      }.bind(this));
+      _.delay(function () {
+        getUsers().then(function (users) {
+          currentUserList = users;
+          this.showUsers(users);
+        }.bind(this));
+      }.bind(this), 0);
     },
     showUsers: function (users) {
       var region = communicator.reqres.request('region:getRegion', 'content');

@@ -16,9 +16,11 @@ function( communicator, BaseController, RepositoryView, Backbone ) {
     initialize: function (options) {
       var id = options.id;
       this._showLoadingView();
-      getRepository(id).then(function (repository) {
-        this._showRepository(repository);
-      }.bind(this));
+      _.delay(function () {
+        getRepository(id).then(function (repository) {
+          this._showRepository(repository);
+        }.bind(this));
+      }.bind(this), 0);
     },
     _showRepository: function (repository) {
       var region = communicator.reqres.request('region:getRegion', 'content');

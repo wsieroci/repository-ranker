@@ -14,9 +14,11 @@ function( communicator, BaseController, RepositoriesView ) {
   var RepositoriesController = BaseController.extend({
     initialize: function () {
       this._showLoadingView();
-      getRepositories().then(function (repositories) {
-        this._showRepositories(repositories);
-      }.bind(this));
+      _.delay(function () {
+        getRepositories().then(function (repositories) {
+          this._showRepositories(repositories);
+        }.bind(this));
+      }.bind(this), 0);
     },
     _showRepositories: function (repositories) {
       var region = communicator.reqres.request('region:getRegion', 'content');
