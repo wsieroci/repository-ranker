@@ -69,7 +69,7 @@
             .row-data {
               text-align: right;
               .score-data-label {
-                color: rgba($black, 0.7);
+                color: rgba($black, 0.4);
               }
             }
           }
@@ -85,10 +85,13 @@
       ul.user-items {
         li.user-item {
           a {
+            .user-login-data {
+              font-size: 17px;
+            }
             .user-score-data {
               position: absolute;
               top: 60px;
-              font-size: 14px;
+              font-size: 12px;
               right: 20px;
               .score-data-label {
                 color: rgba($black, 0.7);
