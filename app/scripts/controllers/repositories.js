@@ -18,7 +18,7 @@ function( communicator, BaseController, RepositoriesView ) {
         getRepositories().then(function (repositories) {
           this._showRepositories(repositories);
         }.bind(this));
-      }.bind(this), 0);
+      }.bind(this), 400);
     },
     _showRepositories: function (repositories) {
       var region = communicator.reqres.request('region:getRegion', 'content');

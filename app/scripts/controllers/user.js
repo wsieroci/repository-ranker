@@ -19,9 +19,11 @@ function( communicator, BaseController, UserView, User, OrganizationRepositories
     initialize: function (options) {
       var id = options.id;
       this._showLoadingView();
-      getUser(id).then(function (user) {
-        this._showUser(user);
-      }.bind(this));
+      _.delay(function () {
+        getUser(id).then(function (user) {
+          this._showUser(user);
+        }.bind(this));
+      }.bind(this), 400);
     },
     _showUser: function (user) {
       var region = communicator.reqres.request('region:getRegion', 'content');

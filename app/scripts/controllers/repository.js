@@ -20,7 +20,7 @@ function( communicator, BaseController, RepositoryView, Backbone ) {
         getRepository(id).then(function (repository) {
           this._showRepository(repository);
         }.bind(this));
-      }.bind(this), 0);
+      }.bind(this), 400);
     },
     _showRepository: function (repository) {
       var region = communicator.reqres.request('region:getRegion', 'content');

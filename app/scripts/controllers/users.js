@@ -26,7 +26,7 @@ function( communicator, _, BaseController, UsersView, User, OrganizationReposito
           currentUserList = users;
           this.showUsers(users);
         }.bind(this));
-      }.bind(this), 0);
+      }.bind(this), 200);
     },
     showUsers: function (users) {
       var region = communicator.reqres.request('region:getRegion', 'content');
@@ -52,7 +52,7 @@ function( communicator, _, BaseController, UsersView, User, OrganizationReposito
         currentUserList.comparator = communicator.reqres.request('comparator:get', type);
         currentUserList.sort();
         usersController.showUsers(currentUserList);
-      }, 0);
+      }, 400);
     }
   });
 });
