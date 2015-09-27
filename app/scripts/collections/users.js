@@ -1,13 +1,12 @@
 define([
   'models/user',
   'models/repository',
-  'gh3',
   'jquery',
   'communicator',
   'backbone',
   'backbone.marionette'
 ],
-function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
+function( UserModel, RepositoryModel, $, communicator, Backbone ) {
   'use strict';
 
   var MAX_REQUESTS_LIMIT = -1; // no limit
