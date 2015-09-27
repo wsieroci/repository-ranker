@@ -1,12 +1,13 @@
 define([
   'communicator',
+  'underscore',
   'controllers/base',
   'views/users',
   'models/user',
   'collections/organizationRepositories',
   'collections/users'
 ],
-function( communicator, BaseController, UsersView, User, OrganizationRepositories, UserCollection ) {
+function( communicator, _, BaseController, UsersView, User, OrganizationRepositories, UserCollection ) {
   'use strict';
 
   function getUsers() {
@@ -17,31 +18,41 @@ function( communicator, BaseController, UsersView, User, OrganizationRepositorie
   }
 
   var currentUserList;
+  var usersController;
 
   var UsersController = BaseController.extend({
     initialize: function () {
       this._showLoadingView();
       getUsers().then(function (users) {
         currentUserList = users;
-        this._showUsers(users);
+        this.showUsers(users);
       }.bind(this));
     },
-    _showUsers: function (users) {
+    showUsers: function (users) {
       var region = communicator.reqres.request('region:getRegion', 'content');
       var view = new UsersView({collection: users, region: region});
       region.show(view);
+    },
+    showLoading: function () {
+      this._showLoadingView();
     }
   });
 
   communicator.command.setHandler('route:users', function () {
     communicator.command.execute('controller:navigation:showSorting');
-    return new UsersController();
+    usersController = new UsersController();
   });
 
   communicator.command.setHandler('controller:users:sort', function (type) {
-    if(currentUserList) {
-      currentUserList.comparator = communicator.reqres.request('comparator:get', type);
-      currentUserList.sort();
+    if(usersController) {
+      usersController.showLoading();
+    }
+    if(currentUserList && usersController) {
+      _.delay(function () {
+        currentUserList.comparator = communicator.reqres.request('comparator:get', type);
+        currentUserList.sort();
+        usersController.showUsers(currentUserList);
+      }, 0);
     }
   });
 });

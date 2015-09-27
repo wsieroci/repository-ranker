@@ -10,7 +10,7 @@ define([
 function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
   'use strict';
 
-  var MAX_REQUESTS_LIMIT = -1;
+  var MAX_REQUESTS_LIMIT = -1; // no limit
 
   var UserCollection = Backbone.Collection.extend({
     initialize: function (options) {

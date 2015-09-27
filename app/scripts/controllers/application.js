@@ -1,8 +1,9 @@
 define([
   'communicator',
+  'underscore',
   'controllers/base'
 ],
-function( communicator, BaseController, Backbone ) {
+function( communicator, _, BaseController, Backbone ) {
   'use strict';
 
   var ApplicationController = BaseController.extend({
@@ -10,16 +11,25 @@ function( communicator, BaseController, Backbone ) {
       this._showNavigation();
     },
     users: function () {
-      communicator.command.execute('route:users');
+      this._showLoadingView();
+      _.delay(function () {
+        communicator.command.execute('route:users');
+      }, 0);
     },
     user: function (id) {
       communicator.command.execute('route:user', id);
     },
     repositories: function () {
-      communicator.command.execute('route:repositories');
+      this._showLoadingView();
+      _.delay(function () {
+        communicator.command.execute('route:repositories');
+      }, 0);
     },
     repository: function (id) {
-      communicator.command.execute('route:repository', id);
+      this._showLoadingView();
+      _.delay(function () {
+        communicator.command.execute('route:repository', id);
+      }, 0);
     },
     _showNavigation: function () {
       communicator.reqres.request('controller:navigation');
