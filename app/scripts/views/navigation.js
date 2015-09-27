@@ -1,11 +1,10 @@
 define([
   'communicator',
-  'handlebars',
   'hbs!tmpl/navigation',
   'backbone',
   'backbone.marionette'
 ],
-function( communicator, Handlebars, navigationTemplate, Backbone ) {
+function( communicator, navigationTemplate, Backbone ) {
   'use strict';
 
   var NavigationView = Backbone.Marionette.ItemView.extend({

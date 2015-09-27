@@ -1,11 +1,10 @@
 define([
-  'handlebars',
   'hbs!tmpl/repository',
   'hbs!tmpl/userListRow',
   'backbone',
   'backbone.marionette'
 ],
-function( Handlebars, repositoryTemplate, userListRowTemplate, Backbone ) {
+function( repositoryTemplate, userListRowTemplate, Backbone ) {
   'use strict';
 
   var UserRowView = Backbone.Marionette.ItemView.extend({

@@ -1,10 +1,9 @@
 define([
-  'handlebars',
   'hbs!tmpl/loading',
   'backbone',
   'backbone.marionette'
 ],
-function( Handlebars, loadingTemplate, Backbone ) {
+function( loadingTemplate, Backbone ) {
   'use strict';
 
   var LoadingView = Backbone.Marionette.ItemView.extend({
