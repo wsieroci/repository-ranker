@@ -6,33 +6,33 @@ define([
 function( _, communicator, Backbone ) {
   'use strict';
 
+  function defaultValue(value) {
+    if(_.isUndefined(value)) {
+      value = 0;
+    }
+
+    return value;
+  }
+
   var comparators = {
     contributions: function(user) {
       var value = user.get('total');
-      if(_.isUndefined(value)) {
-        value = 0;
-      }
+      value = defaultValue(value);
       return -value;
     },
     followers: function(user) {
       var value = user.get('author').followers;
-      if(_.isUndefined(value)) {
-        value = 0;
-      }
+      value = defaultValue(value);
       return -value;
     },
     repos: function(user) {
       var value = user.get('author').public_repos;
-      if(_.isUndefined(value)) {
-        value = 0;
-      }
+      value = defaultValue(value);
       return -value;
     },
     gists: function(user) {
       var value = user.get('author').public_gists;
-      if(_.isUndefined(value)) {
-        value = 0;
-      }
+      value = defaultValue(value);
       return -value;
     }
   };
