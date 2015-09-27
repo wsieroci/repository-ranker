@@ -10,7 +10,7 @@ define([
 function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
   'use strict';
 
-  var MAX_REQUESTS_LIMIT = 2;
+  var MAX_REQUESTS_LIMIT = -1;
 
   var UserCollection = Backbone.Collection.extend({
     initialize: function (options) {
@@ -28,7 +28,7 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
 
     repositories.then(function (repositories) { 
       repositories.each(function (repository) {
-        if(numRequests > MAX_REQUESTS_LIMIT - 1) {
+        if(MAX_REQUESTS_LIMIT !== -1 && numRequests > MAX_REQUESTS_LIMIT - 1) {
           return false; 
         }
         usersList.push(repository.fetchUsers().then(function () {
@@ -47,11 +47,11 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
   function createUserCollection(repositoriesCollection, userCollection) {
     $.each(repositoriesCollection, function (index, repository) {
       repository.each(function (user) {
-        userCollection.add(user);
         var tmpModel = userCollection.get(user.get('id'));
 
         if(tmpModel) {
           tmpModel.set('total', tmpModel.get('total') + user.get('total'));
+          tmpModel.set('repositories', tmpModel.get('repositories').add(user.get('repositories').models));
         } else {
           userCollection.add(user);
         }
@@ -67,7 +67,7 @@ function( UserModel, RepositoryModel, Gh3, $, communicator, Backbone ) {
 
     $.each(array, function (index, user) {
       promiseCollection.push(user.fetchAuthor());
-      if(numRequests > MAX_REQUESTS_LIMIT - 1) {
+      if(MAX_REQUESTS_LIMIT !== -1 && numRequests > MAX_REQUESTS_LIMIT - 1) {
         return false; 
       }
       numRequests++;
