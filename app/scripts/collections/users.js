@@ -3,8 +3,7 @@ define([
   'models/repository',
   'jquery',
   'communicator',
-  'backbone',
-  'backbone.marionette'
+  'backbone'
 ],
 function( UserModel, RepositoryModel, $, communicator, Backbone ) {
   'use strict';

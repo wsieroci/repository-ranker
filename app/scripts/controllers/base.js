@@ -1,8 +1,7 @@
 define([
   'communicator',
   'views/loading',
-  'backbone',
-  'backbone.marionette'
+  'backbone'
 ],
 function( communicator, LoadingView, Backbone ) {
   'use strict';

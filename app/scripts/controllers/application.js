@@ -3,7 +3,7 @@ define([
   'underscore',
   'controllers/base'
 ],
-function( communicator, _, BaseController, Backbone ) {
+function( communicator, _, BaseController ) {
   'use strict';
 
   var ApplicationController = BaseController.extend({
