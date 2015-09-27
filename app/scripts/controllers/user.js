@@ -27,7 +27,6 @@ function( communicator, BaseController, UserView, User, OrganizationRepositories
     },
     _showUser: function (user) {
       var region = communicator.reqres.request('region:getRegion', 'content');
-      debugger
       var view = new UserView({model: user, collection: user.get('repositories'), region: region});
       region.show(view);
     }
