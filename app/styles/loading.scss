@@ -1,3 +1,8 @@
+@import 'palette.scss';
+
 .loading {
   padding-top: 200px;
+  h5 {
+    color: rgba($black, 0.3);
+  }
 }
