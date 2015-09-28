@@ -26,7 +26,7 @@ function( communicator, _, BaseController, UsersView, User, OrganizationReposito
           currentUserList = users;
           this.showUsers(users);
         }.bind(this));
-      }.bind(this), 200);
+      }.bind(this), 400);
     },
     showUsers: function (users) {
       var region = communicator.reqres.request('region:getRegion', 'content');
