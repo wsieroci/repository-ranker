@@ -14,7 +14,12 @@ function( UserModel, RepositoryModel, $, communicator, Backbone ) {
     initialize: function (options) {
     },
     model: function (attributes, options) {
-      return new UserModel(attributes, options);
+      try {
+        return new UserModel(attributes, options);
+      }
+      catch (e) {
+        communicator.command.execute('route:error');
+      }
     }
   });
 
