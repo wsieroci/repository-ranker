@@ -7,6 +7,7 @@ define([
   'controllers/repositories',
   'controllers/repository',
   'controllers/navigation',
+  'controllers/error',
   'comparators'
 ],
 function( communicator, Backbone ) {
@@ -19,6 +20,12 @@ function( communicator, Backbone ) {
       communicator.reqres.setHandler("region:getRegion", function (region) {
         return app.rootView[region];
       });
+    }
+  };
+
+  window.onerror = function (message, url, line, column, error) {
+    if(error && error.message === 'API error') {
+      communicator.command.execute('route:error');
     }
   };
 

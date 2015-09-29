@@ -15,6 +15,9 @@ function( communicator, Backbone, _, Associations ) {
       total: 0
     },
     initialize: function (model, options) {
+      if(_.isUndefined(model.author)) {
+        throw Error('API error');
+      }
       this.set('id', model.author.login);
       this._isAuthorComplete = false;
     },

@@ -11,9 +11,9 @@ function( communicator, BaseController, ErrorView, Backbone ) {
     initialize: function (options) {
       this._showError();
     },
-    _showUser: function (user) {
+    _showError: function (user) {
       var region = communicator.reqres.request('region:getRegion', 'content');
-      var view = new ErrorView(region: region});
+      var view = new ErrorView({region: region});
       region.show(view);
     }
   });
