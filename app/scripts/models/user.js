@@ -8,7 +8,7 @@ define([
 function( communicator, Backbone, _, Associations ) {
   'use strict';
 
-  var USERS_API = 'https://api.github.com/users/<%= login %>?client_id=7afd6b8573c9b0fadc21&client_secret=74e744a109e702226c7232aa6d1493c9fead4018';
+  var USERS_API = 'https://api.github.com/users/<%= login %>?<%= credentials %>';
 
   var UserModel = Associations.AssociatedModel.extend({
     defaults: {
@@ -24,7 +24,12 @@ function( communicator, Backbone, _, Associations ) {
     fetchAuthor: function () {
       if(this._isAuthorComplete === false) {
         var authorModel = new Backbone.Model();
-        authorModel.url = _.template(USERS_API)({login: this.get('author').login});
+        
+        authorModel.url = _.template(USERS_API)({
+          login: this.get('author').login, 
+          credentials: communicator.reqres.request('options:getCredentials')
+        });
+
         this._isAuthorComplete = true
         return authorModel.fetch().then(function () {
           this.set('author', authorModel.attributes);

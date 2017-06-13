@@ -10,7 +10,7 @@ define([
 function( Backbone, communicator, _, UserModel, UserCollection, Associations ) {
   'use strict';
 
-  var CONTRIBUTORS_API = 'https://api.github.com/repos/<%= name %>/stats/contributors?client_id=7afd6b8573c9b0fadc21&client_secret=74e744a109e702226c7232aa6d1493c9fead4018';
+  var CONTRIBUTORS_API = 'https://api.github.com/repos/<%= name %>/stats/contributors?<%= credentials %>';
 
   function addRepository(userCollection, repository) {
     userCollection.each(function (model) {
@@ -36,7 +36,10 @@ function( Backbone, communicator, _, UserModel, UserCollection, Associations ) {
       if(this._isUsersFetched === false) {
         var userCollection = new UserCollection();
         var name = this.get('full_name');
-        userCollection.url = _.template(CONTRIBUTORS_API)({name: name});
+        userCollection.url = _.template(CONTRIBUTORS_API)({
+          name: name, 
+          credentials: communicator.reqres.request('options:getCredentials')
+        });
         return userCollection.fetch().then(function () {
           this.set('users', userCollection);
           addRepository(userCollection, this);

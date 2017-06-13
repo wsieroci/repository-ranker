@@ -20,6 +20,10 @@ function( communicator, Backbone ) {
       communicator.reqres.setHandler("region:getRegion", function (region) {
         return app.rootView[region];
       });
+
+      communicator.reqres.setHandler("options:getCredentials", function () {
+        return 'client_id=yourcliendid&client_secret=yoursecret';
+      });
     }
   };
 
